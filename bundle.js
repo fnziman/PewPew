@@ -95,10 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
     game.playing = true;
     game.board.dropPew();
   });
-
-
-  window.ctx = ctx;
-  window.game = game;
+  
 });
 
 
@@ -117,6 +114,15 @@ class Game {
     this.board = new __WEBPACK_IMPORTED_MODULE_0__board__["a" /* default */](this, canvas, ctx);
     this.playing = false;
     this.score = 0;
+  }
+
+  pause() {
+    this.playing = !this.playing;
+    const paused = document.getElementById('paused');
+    paused.className = paused.className === "" ? "hidden" : "";
+    if (this.playing) {
+      this.board.fallingPew.callFall();
+    }
   }
 
   resetCheckBoard() {
@@ -286,6 +292,9 @@ class Board {
         break;
       case 32: //spacebar - rotate
         this.fallingPew.rotate(this.grid);
+        break;
+      case 13:
+        this.game.pause();
         break;
       default:
         return;

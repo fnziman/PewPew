@@ -9,6 +9,15 @@ class Game {
     this.score = 0;
   }
 
+  pause() {
+    this.playing = !this.playing;
+    const paused = document.getElementById('paused');
+    paused.className = paused.className === "" ? "hidden" : "";
+    if (this.playing) {
+      this.board.fallingPew.callFall();
+    }
+  }
+
   resetCheckBoard() {
     for (let row = 0; row < this.board.checkBoard.length; row++) {
       for (let col = 0; col < this.board.checkBoard[row].length; col++) {

@@ -23,8 +23,5 @@ document.addEventListener('DOMContentLoaded', () => {
     game.playing = true;
     game.board.dropPew();
   });
-
-
-  window.ctx = ctx;
-  window.game = game;
+  
 });

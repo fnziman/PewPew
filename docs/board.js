@@ -77,6 +77,9 @@ class Board {
       case 32: //spacebar - rotate
         this.fallingPew.rotate(this.grid);
         break;
+      case 13:
+        this.game.pause();
+        break;
       default:
         return;
     }
