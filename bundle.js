@@ -75,8 +75,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 document.addEventListener('DOMContentLoaded', () => {
   const canvas = document.getElementById('board');
   const ctx = canvas.getContext('2d');
+  const scoreElement = document.getElementById('score');
 
-  const game = new __WEBPACK_IMPORTED_MODULE_0__game__["a" /* default */](canvas, ctx);
+  const game = new __WEBPACK_IMPORTED_MODULE_0__game__["a" /* default */](scoreElement, canvas, ctx);
 
   const start = document.getElementById('start');
   start.addEventListener('click', () => {
@@ -84,8 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
     game.playing = true;
     game.board.dropPew();
   });
-  const score = document.getElementById('score');
-  score.textContent = `Score: ${game.score}`;
+
 
   window.ctx = ctx;
   window.game = game;
@@ -101,12 +101,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 class Game {
-  constructor(canvas, ctx) {
+  constructor(scoreElement, canvas, ctx) {
     this.canvas = canvas;
     this.ctx = ctx;
     this.board = new __WEBPACK_IMPORTED_MODULE_0__board__["a" /* default */](this, canvas, ctx);
     this.playing = false;
     this.score = 0;
+    this.scoreElement = scoreElement;
   }
 
   resetCheckBoard() {
@@ -165,6 +166,7 @@ class Game {
   }
   destroy(toClear) {
     this.score += toClear.length * 100;
+    this.scoreElement.textContent = `Score: ${this.score}`;
     toClear.forEach((pos) => {
       this.board.grid[pos[0]][pos[1]] = 0;
     });
