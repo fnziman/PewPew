@@ -1,5 +1,7 @@
 # Pew Pew
 
+[Pew Pew](https://fnziman.github.io/PewPew/)
+
 ## Background
 
 Pew Pew (read as if you were shooting vocalizing your phaser in a game of laser tag) is a falling block puzzle game inspired by a Japanese arcade game named 'Puyo Puyo'.
