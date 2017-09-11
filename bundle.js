@@ -79,11 +79,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const game = new __WEBPACK_IMPORTED_MODULE_0__game__["a" /* default */](canvas, ctx);
 
   const start = document.getElementById('start');
-    start.addEventListener('click', () => {
-      start.className = "hidden";
-      game.playing = true;
-      game.board.dropPew();
-    });
+  start.addEventListener('click', () => {
+    start.className = "hidden";
+    game.playing = true;
+    game.board.dropPew();
+  });
+  const score = document.getElementById('score');
+  score.textContent = `Score: ${game.score}`;
 
   window.ctx = ctx;
   window.game = game;
@@ -104,6 +106,7 @@ class Game {
     this.ctx = ctx;
     this.board = new __WEBPACK_IMPORTED_MODULE_0__board__["a" /* default */](this, canvas, ctx);
     this.playing = false;
+    this.score = 0;
   }
 
   resetCheckBoard() {
@@ -161,6 +164,7 @@ class Game {
     return clearPos;
   }
   destroy(toClear) {
+    this.score += toClear.length * 100;
     toClear.forEach((pos) => {
       this.board.grid[pos[0]][pos[1]] = 0;
     });

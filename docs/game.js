@@ -6,6 +6,7 @@ class Game {
     this.ctx = ctx;
     this.board = new Board(this, canvas, ctx);
     this.playing = false;
+    this.score = 0;
   }
 
   resetCheckBoard() {
@@ -63,6 +64,7 @@ class Game {
     return clearPos;
   }
   destroy(toClear) {
+    this.score += toClear.length * 100;
     toClear.forEach((pos) => {
       this.board.grid[pos[0]][pos[1]] = 0;
     });

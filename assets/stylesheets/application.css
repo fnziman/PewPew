@@ -51,18 +51,25 @@ h3 {
   display: none !important;
 }
 #start {
-  display: block;
-  position: absolute;
-  right: 140px;
-  top: 262px;
+  position: relative;
+  left: 110px;
+  top: 295px;
   border-radius: 50%;
-  padding: 35px 15px;
+  padding: 35px 0px;
   color: cyan;
   background-color: yellow;
   font-family: Varela Round;
   font-weight: bolder;
+  text-align: center;
   font-size: 22px;
+  max-width: 100px;
+  max-height: 100px;
 }
 #start:hover {
   background-color: magenta;
+}
+#score {
+  position: relative;
+  top: 26px;
+  left: 10px;
 }

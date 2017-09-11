@@ -7,11 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const game = new Game(canvas, ctx);
 
   const start = document.getElementById('start');
-    start.addEventListener('click', () => {
-      start.className = "hidden";
-      game.playing = true;
-      game.board.dropPew();
-    });
+  start.addEventListener('click', () => {
+    start.className = "hidden";
+    game.playing = true;
+    game.board.dropPew();
+  });
+  const score = document.getElementById('score');
+  score.textContent = `Score: ${game.score}`;
 
   window.ctx = ctx;
   window.game = game;
