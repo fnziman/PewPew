@@ -47,3 +47,22 @@ h3 {
   justify-content: space-between;
   margin: 30px;
 }
+.hidden {
+  display: none !important;
+}
+#start {
+  display: block;
+  position: absolute;
+  right: 140px;
+  top: 262px;
+  border-radius: 50%;
+  padding: 35px 15px;
+  color: cyan;
+  background-color: yellow;
+  font-family: Varela Round;
+  font-weight: bolder;
+  font-size: 22px;
+}
+#start:hover {
+  background-color: magenta;
+}

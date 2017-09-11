@@ -20,7 +20,7 @@ class Pew {
   }
 
   callFall() {
-    if (!this.board.gameOver) {
+    if (!this.board.gameOver && this.board.game.playing) {
       setTimeout(this.fall.bind(this), 250);
     }
   }

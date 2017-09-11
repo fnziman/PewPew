@@ -77,10 +77,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const ctx = canvas.getContext('2d');
 
   const game = new __WEBPACK_IMPORTED_MODULE_0__game__["a" /* default */](canvas, ctx);
-  game.board.dropPew();
-  // document.addEventListener('onClick', () => {
-  //   game.board.dropPew();
-  // });
+
+  const start = document.getElementById('start');
+    start.addEventListener('click', () => {
+      start.className = "hidden";
+      game.playing = true;
+      game.board.dropPew();
+    });
 
   window.ctx = ctx;
   window.game = game;
@@ -100,8 +103,9 @@ class Game {
     this.canvas = canvas;
     this.ctx = ctx;
     this.board = new __WEBPACK_IMPORTED_MODULE_0__board__["a" /* default */](this, canvas, ctx);
-    this.running = false;
+    this.playing = false;
   }
+
   resetCheckBoard() {
     for (let row = 0; row < this.board.checkBoard.length; row++) {
       for (let col = 0; col < this.board.checkBoard[row].length; col++) {
@@ -300,7 +304,7 @@ class Pew {
   }
 
   callFall() {
-    if (!this.board.gameOver) {
+    if (!this.board.gameOver && this.board.game.playing) {
       setTimeout(this.fall.bind(this), 250);
     }
   }

@@ -5,8 +5,9 @@ class Game {
     this.canvas = canvas;
     this.ctx = ctx;
     this.board = new Board(this, canvas, ctx);
-    this.running = false;
+    this.playing = false;
   }
+
   resetCheckBoard() {
     for (let row = 0; row < this.board.checkBoard.length; row++) {
       for (let col = 0; col < this.board.checkBoard[row].length; col++) {

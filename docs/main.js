@@ -5,10 +5,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const ctx = canvas.getContext('2d');
 
   const game = new Game(canvas, ctx);
-  game.board.dropPew();
-  // document.addEventListener('onClick', () => {
-  //   game.board.dropPew();
-  // });
+
+  const start = document.getElementById('start');
+    start.addEventListener('click', () => {
+      start.className = "hidden";
+      game.playing = true;
+      game.board.dropPew();
+    });
 
   window.ctx = ctx;
   window.game = game;
