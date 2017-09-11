@@ -12,10 +12,19 @@
     <header>
       <h1>Pew Pew</h1>
     </header>
-    <div id="start">
-      Start Game
+    <div class="main-container">
+      <div class="instructions">
+        <h3>Instructions</h3>
+        <ul>
+          <li>Try to connect at least four pieces to have them clear off of the board</li>
+          <li>Side arrow keys move pieces from side to side</li>
+          <li>Up arrow key swaps the colors of the piece</li>
+          <li>Spacebar rotates the piece</li>
+          <li>Use down key to move down faster</li>
+        </ul>
+      </div>
+      <canvas id="board" width="300" height="450"></canvas>
     </div>
-    <canvas id="board" width="300" height="450"></canvas>
     <script type="application/javascript" src="./bundle.js"></script>
   </body>
 </html>

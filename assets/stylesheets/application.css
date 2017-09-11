@@ -17,3 +17,21 @@ header {
 h1 {
   text-align: center;
 }
+h3 {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+.main-container {
+  display: flex;
+  justify-content: space-around;
+  font-family: 'Varela Round', sans-serif;
+}
+.instructions {
+  max-width: 300px;
+  padding: 50px 0;
+}
+
+.instructions li {
+  margin: 20px 0;
+}
