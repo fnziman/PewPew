@@ -28,6 +28,10 @@ class Board {
   over() {
     if (!this.grid[0].every(el => el === 0)) {
       this.gameOver = true;
+      const gameOver = document.getElementById('game-over');
+      const finalScore = document.getElementById('final-score');
+      finalScore.textContent = `Score: ${this.game.score}`;
+      gameOver.className = "";
     }
   }
 

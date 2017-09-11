@@ -67,9 +67,19 @@ h3 {
 }
 #start:hover {
   background-color: magenta;
+  cursor: pointer;
 }
 #score {
   position: relative;
   top: 26px;
   left: 10px;
+}
+#game-over {
+  position: relative;
+  text-align: center;
+  top: 240px;
+}
+#replay:hover {
+  cursor: pointer;
+  color: magenta;
 }

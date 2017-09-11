@@ -77,11 +77,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const ctx = canvas.getContext('2d');
   const scoreElement = document.getElementById('score');
 
-  const game = new __WEBPACK_IMPORTED_MODULE_0__game__["a" /* default */](scoreElement, canvas, ctx);
+  let game = new __WEBPACK_IMPORTED_MODULE_0__game__["a" /* default */](canvas, ctx);
+
 
   const start = document.getElementById('start');
   start.addEventListener('click', () => {
     start.className = "hidden";
+    game.playing = true;
+    game.board.dropPew();
+  });
+  const replay = document.getElementById('replay');
+  const gameOver = document.getElementById('game-over');
+  replay.addEventListener('click', () => {
+    game.board.reset();
+    game = new __WEBPACK_IMPORTED_MODULE_0__game__["a" /* default */](canvas, ctx);
+    gameOver.className = "hidden";
     game.playing = true;
     game.board.dropPew();
   });
@@ -101,13 +111,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 class Game {
-  constructor(scoreElement, canvas, ctx) {
+  constructor(canvas, ctx) {
     this.canvas = canvas;
     this.ctx = ctx;
     this.board = new __WEBPACK_IMPORTED_MODULE_0__board__["a" /* default */](this, canvas, ctx);
     this.playing = false;
     this.score = 0;
-    this.scoreElement = scoreElement;
   }
 
   resetCheckBoard() {
@@ -166,7 +175,8 @@ class Game {
   }
   destroy(toClear) {
     this.score += toClear.length * 100;
-    this.scoreElement.textContent = `Score: ${this.score}`;
+    const score = document.getElementById('score');
+    score.textContent = `Score: ${this.score}`;
     toClear.forEach((pos) => {
       this.board.grid[pos[0]][pos[1]] = 0;
     });
@@ -228,6 +238,10 @@ class Board {
   over() {
     if (!this.grid[0].every(el => el === 0)) {
       this.gameOver = true;
+      const gameOver = document.getElementById('game-over');
+      const finalScore = document.getElementById('final-score');
+      finalScore.textContent = `Score: ${this.game.score}`;
+      gameOver.className = "";
     }
   }
 

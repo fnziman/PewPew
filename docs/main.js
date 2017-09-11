@@ -5,11 +5,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const ctx = canvas.getContext('2d');
   const scoreElement = document.getElementById('score');
 
-  const game = new Game(scoreElement, canvas, ctx);
+  let game = new Game(canvas, ctx);
+
 
   const start = document.getElementById('start');
   start.addEventListener('click', () => {
     start.className = "hidden";
+    game.playing = true;
+    game.board.dropPew();
+  });
+  const replay = document.getElementById('replay');
+  const gameOver = document.getElementById('game-over');
+  replay.addEventListener('click', () => {
+    game.board.reset();
+    game = new Game(canvas, ctx);
+    gameOver.className = "hidden";
     game.playing = true;
     game.board.dropPew();
   });

@@ -1,13 +1,12 @@
 import Board from './board';
 
 class Game {
-  constructor(scoreElement, canvas, ctx) {
+  constructor(canvas, ctx) {
     this.canvas = canvas;
     this.ctx = ctx;
     this.board = new Board(this, canvas, ctx);
     this.playing = false;
     this.score = 0;
-    this.scoreElement = scoreElement;
   }
 
   resetCheckBoard() {
@@ -66,7 +65,8 @@ class Game {
   }
   destroy(toClear) {
     this.score += toClear.length * 100;
-    this.scoreElement.textContent = `Score: ${this.score}`;
+    const score = document.getElementById('score');
+    score.textContent = `Score: ${this.score}`;
     toClear.forEach((pos) => {
       this.board.grid[pos[0]][pos[1]] = 0;
     });
