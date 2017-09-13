@@ -43,8 +43,7 @@ h3 {
 .right {
   display: flex;
   flex-direction: column;
-  /*height: 100vh;*/
-  justify-content: center;
+  /*justify-content: center;*/
 }
 .links {
   display: flex;

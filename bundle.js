@@ -94,6 +94,10 @@ document.addEventListener('DOMContentLoaded', () => {
     gameOver.className = "hidden";
     game.playing = true;
     game.board.dropPew();
+    easy.style.color = 'magenta';
+    medium.style.color = 'black';
+    hard.style.color = 'black';
+    document.getElementById('score').textContent = `Score: 0`;
   });
 
   const easy = document.getElementById('easy');
