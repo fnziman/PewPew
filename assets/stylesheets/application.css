@@ -87,6 +87,9 @@ h3 {
   text-align: center;
   top: -355px;
 }
+#game-over p, #paused p{
+  display: inline-block;
+}
 #replay {
   display: inline-block;
   padding: 10px;
