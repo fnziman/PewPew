@@ -95,7 +95,41 @@ document.addEventListener('DOMContentLoaded', () => {
     game.playing = true;
     game.board.dropPew();
   });
-  
+
+  const easy = document.getElementById('easy');
+  const medium = document.getElementById('medium');
+  const hard = document.getElementById('hard');
+  easy.addEventListener('click', () => {
+    game.board.speed = 500;
+    if (game.board.fallingPew) {
+      game.board.fallingPew.speed = 500;
+    }
+    easy.style.color = 'magenta';
+    medium.style.color = 'black';
+    hard.style.color = 'black';
+  });
+  medium.addEventListener('click', () => {
+    game.board.speed = 200;
+    if (game.board.fallingPew) {
+      game.board.fallingPew.speed = 200;
+    }
+    medium.style.color = 'yellow';
+    easy.style.color = 'black';
+    hard.style.color = 'black';
+  });
+  hard.addEventListener('click', () => {
+    game.board.speed = 50;
+    if (game.board.fallingPew) {
+      game.board.fallingPew.speed = 50;
+    }
+    hard.style.color = 'cyan';
+    easy.style.color = 'black';
+    medium.style.color = 'black';
+  });
+
+  //testing/////
+  window.game = game;
+
 });
 
 
@@ -236,6 +270,7 @@ class Board {
     this.fallingPew = this.pews.slice(-1)[0];
     this.move = this.move.bind(this);
     this.gameOver = false;
+    this.speed = 500;
   }
 
   reset() {
@@ -253,14 +288,16 @@ class Board {
 
   dropPew() {
     this.over();
-    this.game.searchAndDestroy(this.grid, this.checkBoard);
-    document.addEventListener("keydown", this.move);
-    this.createPew();
-    this.fallingPew = this.pews.slice(-1)[0];
-    this.fallingPew.callFall();
+    if (!this.gameOver) {
+      this.game.searchAndDestroy(this.grid, this.checkBoard);
+      document.addEventListener("keydown", this.move);
+      this.createPew();
+      this.fallingPew = this.pews.slice(-1)[0];
+      this.fallingPew.callFall();
+    }
   }
   createPew() {
-    this.pews.push(new __WEBPACK_IMPORTED_MODULE_0__pew__["a" /* default */](this));
+    this.pews.push(new __WEBPACK_IMPORTED_MODULE_0__pew__["a" /* default */](this, this.speed));
   }
 
   draw() {
@@ -312,7 +349,7 @@ class Board {
 
 "use strict";
 class Pew {
-  constructor(board) {
+  constructor(board, speed) {
     this.board = board;
     this.row1 = 0;
     this.col1 = Math.floor(Math.random() * 9);
@@ -323,6 +360,7 @@ class Pew {
     this.stopped = false;
     this.noSwitch = false;
     this.horizontal = true;
+    this.speed = speed;
   }
 
   posFilled(row, col) {
@@ -334,7 +372,7 @@ class Pew {
 
   callFall() {
     if (!this.board.gameOver && this.board.game.playing) {
-      setTimeout(this.fall.bind(this), 250);
+      setTimeout(this.fall.bind(this), this.speed);
     }
   }
 

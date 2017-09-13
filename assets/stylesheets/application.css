@@ -1,7 +1,3 @@
-body {
-  display: flex;
-  flex-direction: column;
-}
 header {
   font-family: 'Varela Round', sans-serif;
   height: 60px;
@@ -32,7 +28,8 @@ h3 {
   padding: 40px 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
+  text-align: justify;
 }
 .instructions li {
   margin: 20px 0;
@@ -40,6 +37,7 @@ h3 {
 .right {
   display: flex;
   flex-direction: column;
+  height: 100vh;
 }
 .links {
   display: flex;
@@ -53,7 +51,7 @@ h3 {
 #start {
   position: relative;
   left: 110px;
-  top: 295px;
+  top: -295px;
   border-radius: 50%;
   padding: 35px 0px;
   color: cyan;
@@ -70,16 +68,47 @@ h3 {
   cursor: pointer;
 }
 #score {
-  position: relative;
-  top: 26px;
-  left: 10px;
+  position: absolute;
+  margin: 20px 10px;
 }
 #game-over, #paused {
   position: relative;
   text-align: center;
-  top: 240px;
+  top: -260px;
 }
 #replay:hover {
   cursor: pointer;
   color: magenta;
+}
+.difficulty {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 30px;
+}
+.difficulty p {
+  border-radius: 50%;
+  padding: 10px 10px;
+  cursor: pointer;
+}
+.difficulty p {
+  background-color: blue;
+}
+#easy {
+  background-color: yellow;
+  color: magenta;
+}
+#medium {
+  background-color: cyan;
+}
+#hard {
+  background-color: magenta;
+}
+#easy:hover {
+  color: magenta;
+}
+#medium:hover {
+  color: yellow;
+}
+#hard:hover {
+  color: cyan;
 }

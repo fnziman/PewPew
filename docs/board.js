@@ -20,6 +20,7 @@ class Board {
     this.fallingPew = this.pews.slice(-1)[0];
     this.move = this.move.bind(this);
     this.gameOver = false;
+    this.speed = 500;
   }
 
   reset() {
@@ -37,14 +38,16 @@ class Board {
 
   dropPew() {
     this.over();
-    this.game.searchAndDestroy(this.grid, this.checkBoard);
-    document.addEventListener("keydown", this.move);
-    this.createPew();
-    this.fallingPew = this.pews.slice(-1)[0];
-    this.fallingPew.callFall();
+    if (!this.gameOver) {
+      this.game.searchAndDestroy(this.grid, this.checkBoard);
+      document.addEventListener("keydown", this.move);
+      this.createPew();
+      this.fallingPew = this.pews.slice(-1)[0];
+      this.fallingPew.callFall();
+    }
   }
   createPew() {
-    this.pews.push(new Pew(this));
+    this.pews.push(new Pew(this, this.speed));
   }
 
   draw() {

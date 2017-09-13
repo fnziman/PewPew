@@ -1,5 +1,5 @@
 class Pew {
-  constructor(board) {
+  constructor(board, speed) {
     this.board = board;
     this.row1 = 0;
     this.col1 = Math.floor(Math.random() * 9);
@@ -10,6 +10,7 @@ class Pew {
     this.stopped = false;
     this.noSwitch = false;
     this.horizontal = true;
+    this.speed = speed;
   }
 
   posFilled(row, col) {
@@ -21,7 +22,7 @@ class Pew {
 
   callFall() {
     if (!this.board.gameOver && this.board.game.playing) {
-      setTimeout(this.fall.bind(this), 250);
+      setTimeout(this.fall.bind(this), this.speed);
     }
   }
 

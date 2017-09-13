@@ -14,6 +14,11 @@
     </header>
     <div class="main-container">
       <div class="left">
+        <div class="difficulty">
+          <p id="easy">Easy</p>
+          <p id="medium">Medium</p>
+          <p id="hard">Hard</p>
+        </div>
         <div class="instructions">
           <h3>Instructions</h3>
           <ul>
@@ -32,6 +37,10 @@
         </div>
       </div>
       <div class="right">
+        <canvas id="board" width="300" height="450"></canvas>
+        <div id="score">
+          Score: 0
+        </div>
         <div id="game-over" class="hidden">
           <p>Game Over</p>
           <p id="final-score">Score: </p>
@@ -45,10 +54,6 @@
         <div id="start" >
           START
         </div>
-        <div id="score">
-          Score:
-        </div>
-        <canvas id="board" width="300" height="450"></canvas>
       </div>
     </div>
     </div>
