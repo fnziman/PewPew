@@ -46,9 +46,9 @@ document.addEventListener('DOMContentLoaded', () => {
     hard.style.color = 'black';
   });
   hard.addEventListener('click', () => {
-    game.board.speed = 50;
+    game.board.speed = 100;
     if (game.board.fallingPew) {
-      game.board.fallingPew.speed = 50;
+      game.board.fallingPew.speed = 100;
     }
     hard.style.color = 'cyan';
     easy.style.color = 'black';

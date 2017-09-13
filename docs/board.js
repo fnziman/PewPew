@@ -32,7 +32,7 @@ class Board {
       const gameOver = document.getElementById('game-over');
       const finalScore = document.getElementById('final-score');
       finalScore.textContent = `Score: ${this.game.score}`;
-      gameOver.className = "";
+      gameOver.className = "showing";
     }
   }
 

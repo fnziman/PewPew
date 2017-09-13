@@ -1,3 +1,8 @@
+body {
+  display: flex;
+  flex-direction: column;
+  max-height: 100vh;
+}
 header {
   font-family: 'Varela Round', sans-serif;
   height: 60px;
@@ -25,11 +30,12 @@ h3 {
 }
 .left {
   max-width: 300px;
-  padding: 40px 0;
+  max-height: 470px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   text-align: justify;
+  margin-top: 10px;
 }
 .instructions li {
   margin: 20px 0;
@@ -37,21 +43,25 @@ h3 {
 .right {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  /*height: 100vh;*/
+  justify-content: center;
 }
 .links {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 30px;
+  margin: 0 30px 30px 30px;
 }
 .hidden {
-  display: none !important;
+  z-index: 0;
+}
+.showing {
+  z-index: 1000;
 }
 #start {
   position: relative;
   left: 110px;
-  top: -295px;
+  top: -400px;
   border-radius: 50%;
   padding: 35px 0px;
   color: cyan;
@@ -68,13 +78,15 @@ h3 {
   cursor: pointer;
 }
 #score {
-  position: absolute;
-  margin: 20px 10px;
+  position: relative;
+  top: -470px;
+  left: 10px;
+  z-index: 1000;
 }
 #game-over, #paused {
   position: relative;
   text-align: center;
-  top: -260px;
+  top: -345px;
 }
 #replay:hover {
   cursor: pointer;

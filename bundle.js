@@ -118,9 +118,9 @@ document.addEventListener('DOMContentLoaded', () => {
     hard.style.color = 'black';
   });
   hard.addEventListener('click', () => {
-    game.board.speed = 50;
+    game.board.speed = 100;
     if (game.board.fallingPew) {
-      game.board.fallingPew.speed = 50;
+      game.board.fallingPew.speed = 100;
     }
     hard.style.color = 'cyan';
     easy.style.color = 'black';
@@ -153,7 +153,7 @@ class Game {
   pause() {
     this.playing = !this.playing;
     const paused = document.getElementById('paused');
-    paused.className = paused.className === "" ? "hidden" : "";
+    paused.className = paused.className === "showing" ? "hidden" : "showing";
     if (this.playing) {
       this.board.fallingPew.callFall();
     }
@@ -282,7 +282,7 @@ class Board {
       const gameOver = document.getElementById('game-over');
       const finalScore = document.getElementById('final-score');
       finalScore.textContent = `Score: ${this.game.score}`;
-      gameOver.className = "";
+      gameOver.className = "showing";
     }
   }
 

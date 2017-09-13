@@ -12,7 +12,7 @@ class Game {
   pause() {
     this.playing = !this.playing;
     const paused = document.getElementById('paused');
-    paused.className = paused.className === "" ? "hidden" : "";
+    paused.className = paused.className === "showing" ? "hidden" : "showing";
     if (this.playing) {
       this.board.fallingPew.callFall();
     }

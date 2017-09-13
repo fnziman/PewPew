@@ -4,4 +4,6 @@
   margin: 10px 0;
   max-width: 300px;
   align-self: center;
+  background-color: white;
+  z-index: 999;
 }
