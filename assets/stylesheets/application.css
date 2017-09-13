@@ -92,10 +92,12 @@ h3 {
   padding: 10px;
   border-radius: 5px;
   border: 2px solid cyan;
+  background-color: #ff7400;
 }
 #replay:hover {
   cursor: pointer;
   color: magenta;
+  background-color: #a605ff;
 }
 .difficulty {
   display: flex;
