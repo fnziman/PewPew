@@ -49,7 +49,7 @@ h3 {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 0 30px 30px 30px;
+  margin: 0 30px;
 }
 .hidden {
   z-index: 0;
@@ -60,7 +60,7 @@ h3 {
 #start {
   position: relative;
   left: 110px;
-  top: -400px;
+  top: -430px;
   border-radius: 50%;
   padding: 35px 0px;
   color: cyan;
@@ -85,7 +85,13 @@ h3 {
 #game-over, #paused {
   position: relative;
   text-align: center;
-  top: -345px;
+  top: -355px;
+}
+#replay {
+  display: inline-block;
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid cyan;
 }
 #replay:hover {
   cursor: pointer;
