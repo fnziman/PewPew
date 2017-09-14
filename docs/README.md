@@ -14,6 +14,11 @@ In addition, this project will include a production README.
 
 This app will be a single screen app.  The screen will include the game itself, buttons to select difficulty, and the current high-score. Additionally, there will be links to my Github, LinkedIn, personal site.
 
+## Wire Frame
+
+The basic board layout will be a grid like this.
+![board](../assets/images/Board.png)
+
 ## Used Technologies
 
 This project will use JavaScript for game logic, and  HTML, and CSS for the game view.
