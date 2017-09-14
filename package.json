@@ -1,0 +1,27 @@
+{
+  "name": "PewPew",
+  "version": "1.0.0",
+  "description": "[Pew Pew](https://fnziman.github.io/PewPew/)",
+  "main": "bundle.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fnziman/PewPew.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fnziman/PewPew/issues"
+  },
+  "homepage": "https://github.com/fnziman/PewPew#readme",
+  "dependencies": {
+    "firebase": "^4.3.1",
+    "firebase-admin": "^5.2.1"
+  }
+}

@@ -76,11 +76,13 @@ h3 {
   background-color: magenta;
   cursor: pointer;
 }
-#score {
+.scores {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 10px;
   position: relative;
   top: -470px;
-  left: 10px;
-  z-index: 1000;
+  z-index: 10000;
 }
 #game-over, #paused {
   position: relative;
