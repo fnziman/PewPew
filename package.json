@@ -20,8 +20,5 @@
     "url": "https://github.com/fnziman/PewPew/issues"
   },
   "homepage": "https://github.com/fnziman/PewPew#readme",
-  "dependencies": {
-    "firebase": "^4.3.1",
-    "firebase-admin": "^5.2.1"
-  }
+  "dependencies": {}
 }
