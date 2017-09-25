@@ -2,6 +2,7 @@ body {
   display: flex;
   flex-direction: column;
   max-height: 100vh;
+  background: -webkit-linear-gradient(left top, magenta, cyan);
 }
 header {
   font-family: 'Varela Round', sans-serif;
@@ -37,6 +38,9 @@ h3 {
   text-align: justify;
   margin-top: 10px;
 }
+.instructions {
+  color: white;
+}
 .instructions li {
   margin: 20px 0;
 }
@@ -50,6 +54,13 @@ h3 {
   flex-direction: row;
   justify-content: space-between;
   margin: 0 30px;
+  font-size: 32px;
+}
+.fa {
+  color: white;
+}
+.fa:hover {
+  color: cyan;
 }
 .hidden {
   z-index: 0;
@@ -83,6 +94,7 @@ h3 {
   position: relative;
   top: -470px;
   z-index: 10000;
+  color: magenta;
 }
 #game-over, #paused {
   position: relative;
@@ -135,4 +147,7 @@ h3 {
 }
 #hard:hover {
   color: cyan;
+}
+#author {
+  color: white;
 }
