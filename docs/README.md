@@ -8,11 +8,11 @@ Pew Pew (read as if you were shooting vocalizing your phaser in a game of laser 
 
 Pew Pew players will be able to play a seamless game, rotate and move the falling pieces, choose the difficulty of the game.
 
-In addition, this project will include a production README.
+Pew Pew will have an intuitive and pleasant UI.
 
 ## Design Layout
 
-This app will be a single screen app.  The screen will include the game itself, buttons to select difficulty, and the current high-score. Additionally, there will be links to my Github, LinkedIn, personal site.
+This app will be a single screen app.  The screen will include the game itself, buttons to select difficulty, and the current high-score. Additionally, there will be links to my Github, LinkedIn, and Personal Site.
 
 ## Wire Frame
 
@@ -21,7 +21,7 @@ The basic board layout will be a grid like this.
 
 ## Used Technologies
 
-This project will use JavaScript for game logic, and  HTML, and CSS for the game view.
+This project will use JavaScript for game logic, paired with HTML and CSS for the game view.
 The board and game pieces will be rendered using HTML Canvas.
 
 ## Technical Implementation
