@@ -65,40 +65,44 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-const newHighScore = (score, database) => {
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var newHighScore = exports.newHighScore = function newHighScore(score, database) {
   database.ref().set({ highScore: score });
 };
-/* harmony export (immutable) */ __webpack_exports__["b"] = newHighScore;
 
-
-const getScore = (database, game) => {
-  database.ref().once('value').then((res) => {
-    const highScore = res.val().highScore;
+var getScore = exports.getScore = function getScore(database, game) {
+  database.ref().once('value').then(function (res) {
+    var highScore = res.val().highScore;
     game.highScore = highScore;
   });
 };
-/* harmony export (immutable) */ __webpack_exports__["a"] = getScore;
-
-
 
 /***/ }),
 /* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__game__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__firebase__ = __webpack_require__(0);
 
 
+var _game = __webpack_require__(2);
 
-document.addEventListener('DOMContentLoaded', () => {
-  const canvas = document.getElementById('board');
-  const ctx = canvas.getContext('2d');
-  const scoreElement = document.getElementById('score');
+var _game2 = _interopRequireDefault(_game);
+
+var _firebase = __webpack_require__(0);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+document.addEventListener('DOMContentLoaded', function () {
+  var canvas = document.getElementById('board');
+  var ctx = canvas.getContext('2d');
+  var scoreElement = document.getElementById('score');
 
   var config = {
     apiKey: "AIzaSyDqv9czEBfNMwWkeI_QGcC9O3IAgoKqoMQ",
@@ -109,34 +113,34 @@ document.addEventListener('DOMContentLoaded', () => {
     messagingSenderId: "194751512644"
   };
   firebase.initializeApp(config);
-  const database = firebase.database();
+  var database = firebase.database();
 
-  let game = new __WEBPACK_IMPORTED_MODULE_0__game__["a" /* default */](canvas, ctx, database);
+  var game = new _game2.default(canvas, ctx, database);
 
-  const start = document.getElementById('start');
-  start.addEventListener('click', () => {
+  var start = document.getElementById('start');
+  start.addEventListener('click', function () {
     start.className = "hidden";
     game.playing = true;
     game.board.dropPew();
   });
-  const replay = document.getElementById('replay');
-  const gameOver = document.getElementById('game-over');
-  replay.addEventListener('click', () => {
+  var replay = document.getElementById('replay');
+  var gameOver = document.getElementById('game-over');
+  replay.addEventListener('click', function () {
     game.board.reset();
-    game = new __WEBPACK_IMPORTED_MODULE_0__game__["a" /* default */](canvas, ctx);
+    game = new _game2.default(canvas, ctx);
     gameOver.className = "hidden";
     game.playing = true;
     game.board.dropPew();
     easy.style.color = 'magenta';
     medium.style.color = 'black';
     hard.style.color = 'black';
-    document.getElementById('score').textContent = `Score: 0`;
+    document.getElementById('score').textContent = 'Score: 0';
   });
 
-  const easy = document.getElementById('easy');
-  const medium = document.getElementById('medium');
-  const hard = document.getElementById('hard');
-  easy.addEventListener('click', () => {
+  var easy = document.getElementById('easy');
+  var medium = document.getElementById('medium');
+  var hard = document.getElementById('hard');
+  easy.addEventListener('click', function () {
     game.board.speed = 500;
     if (game.board.fallingPew) {
       game.board.fallingPew.speed = 500;
@@ -145,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
     medium.style.color = 'black';
     hard.style.color = 'black';
   });
-  medium.addEventListener('click', () => {
+  medium.addEventListener('click', function () {
     game.board.speed = 200;
     if (game.board.fallingPew) {
       game.board.fallingPew.speed = 200;
@@ -154,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
     easy.style.color = 'black';
     hard.style.color = 'black';
   });
-  hard.addEventListener('click', () => {
+  hard.addEventListener('click', function () {
     game.board.speed = 100;
     if (game.board.fallingPew) {
       game.board.fallingPew.speed = 100;
@@ -165,148 +169,193 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-
 /***/ }),
 /* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__board__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__firebase__ = __webpack_require__(0);
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-class Game {
-  constructor(canvas, ctx, database) {
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _board = __webpack_require__(3);
+
+var _board2 = _interopRequireDefault(_board);
+
+var _firebase = __webpack_require__(0);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Game = function () {
+  function Game(canvas, ctx, database) {
+    _classCallCheck(this, Game);
+
     this.canvas = canvas;
     this.ctx = ctx;
-    this.board = new __WEBPACK_IMPORTED_MODULE_0__board__["a" /* default */](this, canvas, ctx);
+    this.board = new _board2.default(this, canvas, ctx);
     this.playing = false;
     this.database = database;
     this.score = 0;
-    Object(__WEBPACK_IMPORTED_MODULE_1__firebase__["a" /* getScore */])(this.database, this);
+    (0, _firebase.getScore)(this.database, this);
   }
 
-  pause() {
-    this.playing = !this.playing;
-    const paused = document.getElementById('paused');
-    paused.className = paused.className === "showing" ? "hidden" : "showing";
-    if (this.playing) {
-      this.board.fallingPew.callFall();
-    }
-  }
-
-  resetCheckBoard() {
-    for (let row = 0; row < this.board.checkBoard.length; row++) {
-      for (let col = 0; col < this.board.checkBoard[row].length; col++) {
-        this.board.checkBoard[row][col] = false;
+  _createClass(Game, [{
+    key: 'pause',
+    value: function pause() {
+      this.playing = !this.playing;
+      var paused = document.getElementById('paused');
+      paused.className = paused.className === "showing" ? "hidden" : "showing";
+      if (this.playing) {
+        this.board.fallingPew.callFall();
       }
     }
-  }
+  }, {
+    key: 'resetCheckBoard',
+    value: function resetCheckBoard() {
+      for (var row = 0; row < this.board.checkBoard.length; row++) {
+        for (var col = 0; col < this.board.checkBoard[row].length; col++) {
+          this.board.checkBoard[row][col] = false;
+        }
+      }
+    }
+  }, {
+    key: 'searchAndDestroy',
+    value: function searchAndDestroy(grid, checkBoard) {
+      var clearPos = [];
 
-  searchAndDestroy(grid, checkBoard) {
-    let clearPos = [];
-
-    for (let row = 0; row < grid.length; row++) {
-      for (let col = 0; col < grid[row].length; col++) {
-        if (grid[row][col] !== 0) {
-          checkBoard[row][col] = true;
-          let currentPos = [[row,col]];
-          let toClear = this.search(grid, checkBoard, row, col, currentPos);
-          if (toClear.length >= 4) {
-            this.destroy(toClear);
-            this.checkSettle();
-            this.resetCheckBoard();
-            this.searchAndDestroy(grid, checkBoard);
-          } else {
-            this.resetCheckBoard();
+      for (var row = 0; row < grid.length; row++) {
+        for (var col = 0; col < grid[row].length; col++) {
+          if (grid[row][col] !== 0) {
+            checkBoard[row][col] = true;
+            var currentPos = [[row, col]];
+            var toClear = this.search(grid, checkBoard, row, col, currentPos);
+            if (toClear.length >= 4) {
+              this.destroy(toClear);
+              this.checkSettle();
+              this.resetCheckBoard();
+              this.searchAndDestroy(grid, checkBoard);
+            } else {
+              this.resetCheckBoard();
+            }
           }
         }
       }
     }
-  }
-  search(grid, checkBoard, row, col, clearPos) {
-    let currentSpot = grid[row][col];
-    if (col > 0 && grid[row][col - 1] === currentSpot && !checkBoard[row][col - 1]) {
-      clearPos.push([row, col - 1]);
-      checkBoard[row][col - 1] = true;
-      this.search(grid, checkBoard, row, col -1, clearPos);
-    }
-    if (col < 9 && grid[row][col + 1] === currentSpot && !checkBoard[row][col + 1]) {
-      clearPos.push([row, col + 1]);
-      checkBoard[row][col + 1] = true;
-      this.search(grid, checkBoard, row, col + 1, clearPos);
-    }
-    if (row > 0 && grid[row - 1][col] === currentSpot && !checkBoard[row - 1][col]) {
-      clearPos.push([row - 1, col]);
-      checkBoard[row - 1][col] = true;
-      this.search(grid, checkBoard, row - 1, col, clearPos);
-    }
-    if (row < 14 && grid[row + 1][col] === currentSpot && !checkBoard[row + 1][col]) {
-      clearPos.push([row + 1, col]);
-      checkBoard[row + 1][col] = true;
-      this.search(grid, checkBoard, row + 1, col, clearPos);
-    }
+  }, {
+    key: 'search',
+    value: function search(grid, checkBoard, row, col, clearPos) {
+      var currentSpot = grid[row][col];
+      if (col > 0 && grid[row][col - 1] === currentSpot && !checkBoard[row][col - 1]) {
+        clearPos.push([row, col - 1]);
+        checkBoard[row][col - 1] = true;
+        this.search(grid, checkBoard, row, col - 1, clearPos);
+      }
+      if (col < 9 && grid[row][col + 1] === currentSpot && !checkBoard[row][col + 1]) {
+        clearPos.push([row, col + 1]);
+        checkBoard[row][col + 1] = true;
+        this.search(grid, checkBoard, row, col + 1, clearPos);
+      }
+      if (row > 0 && grid[row - 1][col] === currentSpot && !checkBoard[row - 1][col]) {
+        clearPos.push([row - 1, col]);
+        checkBoard[row - 1][col] = true;
+        this.search(grid, checkBoard, row - 1, col, clearPos);
+      }
+      if (row < 14 && grid[row + 1][col] === currentSpot && !checkBoard[row + 1][col]) {
+        clearPos.push([row + 1, col]);
+        checkBoard[row + 1][col] = true;
+        this.search(grid, checkBoard, row + 1, col, clearPos);
+      }
 
-    return clearPos;
-  }
-  destroy(toClear) {
-    this.score += toClear.length * 100;
-    const score = document.getElementById('score');
-    score.textContent = `Score: ${this.score}`;
-    if (this.score >= this.highScore) {
-      const highScore = document.getElementById('high-score');
-      Object(__WEBPACK_IMPORTED_MODULE_1__firebase__["b" /* newHighScore */])(this.score, this.database);
-      this.highScore = this.score;
-      highScore.textContent = `High Score: ${this.highScore}`;
+      return clearPos;
     }
-    toClear.forEach((pos) => {
-      this.board.grid[pos[0]][pos[1]] = 0;
-    });
-  }
-  checkSettle() {
-    for (let row = 13; row >= 0; row--) {
-      for (let col = 9; col >= 0; col--) {
-        if (this.board.grid[row][col] !== 0 && this.board.grid[row + 1][col] === 0) {
-          this.settle(row, col);
+  }, {
+    key: 'destroy',
+    value: function destroy(toClear) {
+      var _this = this;
+
+      this.score += toClear.length * 100;
+      var score = document.getElementById('score');
+      score.textContent = 'Score: ' + this.score;
+      if (this.score >= this.highScore) {
+        var highScore = document.getElementById('high-score');
+        (0, _firebase.newHighScore)(this.score, this.database);
+        this.highScore = this.score;
+        highScore.textContent = 'High Score: ' + this.highScore;
+      }
+      toClear.forEach(function (pos) {
+        _this.board.grid[pos[0]][pos[1]] = 0;
+      });
+    }
+  }, {
+    key: 'checkSettle',
+    value: function checkSettle() {
+      for (var row = 13; row >= 0; row--) {
+        for (var col = 9; col >= 0; col--) {
+          if (this.board.grid[row][col] !== 0 && this.board.grid[row + 1][col] === 0) {
+            this.settle(row, col);
+          }
         }
       }
     }
-  }
-  settle(row, col) {
-    while (row < 14 && this.board.grid[row + 1][col] === 0) {
-      this.board.grid[row + 1][col] = this.board.grid[row][col];
-      this.board.grid[row][col] = 0;
-      row++;
+  }, {
+    key: 'settle',
+    value: function settle(row, col) {
+      while (row < 14 && this.board.grid[row + 1][col] === 0) {
+        this.board.grid[row + 1][col] = this.board.grid[row][col];
+        this.board.grid[row][col] = 0;
+        row++;
+      }
     }
-  }
-}
+  }]);
 
-/* harmony default export */ __webpack_exports__["a"] = (Game);
+  return Game;
+}();
 
+exports.default = Game;
 
 /***/ }),
 /* 3 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pew__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__firebase__ = __webpack_require__(0);
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-class Board {
-  constructor(game, canvas, ctx) {
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _pew = __webpack_require__(4);
+
+var _pew2 = _interopRequireDefault(_pew);
+
+var _firebase = __webpack_require__(0);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Board = function () {
+  function Board(game, canvas, ctx) {
+    _classCallCheck(this, Board);
+
     this.game = game;
     this.canvas = canvas;
     this.ctx = ctx;
     this.grid = new Array();
     this.checkBoard = new Array();
     this.COLORS = ['#00FFFF', '#A605FF', '#FF7400', '#FFFF00'];
-    for (let x = 0; x < 15; x++) {
+    for (var x = 0; x < 15; x++) {
       this.grid[x] = new Array();
       this.checkBoard[x] = new Array();
-      for (let y = 0; y < 10; y++) {
+      for (var y = 0; y < 10; y++) {
         this.grid[x][y] = 0;
         this.checkBoard[x][y] = false;
       }
@@ -318,87 +367,120 @@ class Board {
     this.speed = 500;
   }
 
-  reset() {
-    this.ctx.clearRect(0, 0 , this.canvas.width, this.canvas.height);
-  }
-  over() {
-    if (!this.grid[0].every(el => el === 0)) {
-      this.gameOver = true;
-      const gameOver = document.getElementById('game-over');
-      const finalScore = document.getElementById('final-score');
-      finalScore.textContent = `Score: ${this.game.score}`;
+  _createClass(Board, [{
+    key: 'reset',
+    value: function reset() {
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
-  }
-  setHighScore() {
-    const highScore = document.getElementById('high-score');
-    Object(__WEBPACK_IMPORTED_MODULE_1__firebase__["a" /* getScore */])(this.game.database, this.game);
-    highScore.textContent = `High Score: ${this.game.highScore}`;
-  }
-  dropPew() {
-    this.over();
-    this.setHighScore();
-    if (!this.gameOver) {
-      this.game.searchAndDestroy(this.grid, this.checkBoard);
-      document.addEventListener("keydown", this.move);
-      this.createPew();
-      this.fallingPew = this.pews.slice(-1)[0];
-      this.fallingPew.callFall();
+  }, {
+    key: 'over',
+    value: function over() {
+      if (!this.grid[0].every(function (el) {
+        return el === 0;
+      })) {
+        this.gameOver = true;
+        var gameOver = document.getElementById('game-over');
+        var finalScore = document.getElementById('final-score');
+        finalScore.textContent = 'Score: ' + this.game.score;
+      }
     }
-  }
-  createPew() {
-    this.pews.push(new __WEBPACK_IMPORTED_MODULE_0__pew__["a" /* default */](this, this.speed));
-  }
-
-  draw() {
-    this.reset();
-    for (let row = 0; row < this.grid.length; row++) {
-      for (let col = 0; col < this.grid[row].length; col++) {
-        if (this.grid[row][col] !== 0) {
-          this.ctx.beginPath();
-          this.ctx.arc((((col + 1) * 30) - 15), (((row + 1) * 30) - 15), 15, 0, 2 * Math.PI);
-          this.ctx.fillStyle = this.COLORS[this.grid[row][col] - 1];
-          this.ctx.fill();
+  }, {
+    key: 'setHighScore',
+    value: function setHighScore() {
+      var highScore = document.getElementById('high-score');
+      (0, _firebase.getScore)(this.game.database, this.game);
+      highScore.textContent = 'High Score: ' + this.game.highScore;
+    }
+  }, {
+    key: 'dropPew',
+    value: function dropPew() {
+      this.over();
+      this.setHighScore();
+      if (!this.gameOver) {
+        this.game.searchAndDestroy(this.grid, this.checkBoard);
+        document.addEventListener("keydown", this.move);
+        this.createPew();
+        this.fallingPew = this.pews.slice(-1)[0];
+        this.fallingPew.callFall();
+      }
+    }
+  }, {
+    key: 'createPew',
+    value: function createPew() {
+      this.pews.push(new _pew2.default(this, this.speed));
+    }
+  }, {
+    key: 'draw',
+    value: function draw() {
+      this.reset();
+      for (var row = 0; row < this.grid.length; row++) {
+        for (var col = 0; col < this.grid[row].length; col++) {
+          if (this.grid[row][col] !== 0) {
+            this.ctx.beginPath();
+            this.ctx.arc((col + 1) * 30 - 15, (row + 1) * 30 - 15, 15, 0, 2 * Math.PI);
+            this.ctx.fillStyle = this.COLORS[this.grid[row][col] - 1];
+            this.ctx.fill();
+          }
         }
       }
     }
-  }
-  move(e) {
-    switch (e.keyCode) {
-      case 39: //right
-        this.fallingPew.moveRight(this.grid);
-        break;
-      case 37: //left
-        this.fallingPew.moveLeft(this.grid);
-        break;
-      case 38: //up - switch colors
-        this.fallingPew.switchColors(this.grid);
-        break;
-      case 40: //down
-        this.fallingPew.moveDown(this.grid);
-        break;
-      case 32: //spacebar - rotate
-        this.fallingPew.rotate(this.grid);
-        break;
-      case 13:
-        this.game.pause();
-        break;
-      default:
-        return;
+  }, {
+    key: 'move',
+    value: function move(e) {
+      switch (e.keyCode) {
+        case 39:
+          //right
+          this.fallingPew.moveRight(this.grid);
+          break;
+        case 37:
+          //left
+          this.fallingPew.moveLeft(this.grid);
+          break;
+        case 38:
+          //up - switch colors
+          this.fallingPew.switchColors(this.grid);
+          break;
+        case 40:
+          //down
+          this.fallingPew.moveDown(this.grid);
+          break;
+        case 32:
+          //spacebar - rotate
+          this.fallingPew.rotate(this.grid);
+          break;
+        case 13:
+          this.game.pause();
+          break;
+        default:
+          return;
+      }
     }
-  }
+  }]);
 
-}
+  return Board;
+}();
 
-/* harmony default export */ __webpack_exports__["a"] = (Board);
-
+exports.default = Board;
 
 /***/ }),
 /* 4 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-class Pew {
-  constructor(board, speed) {
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Pew = function () {
+  function Pew(board, speed) {
+    _classCallCheck(this, Pew);
+
     this.board = board;
     this.row1 = 0;
     this.col1 = Math.floor(Math.random() * 9);
@@ -412,168 +494,191 @@ class Pew {
     this.speed = speed;
   }
 
-  posFilled(row, col) {
-    return this.board.grid[row][col] !== 0;
-  }
-  posEmpty(row, col) {
-    return this.board.grid[row][col] === 0;
-  }
-
-  callFall() {
-    if (!this.board.gameOver && this.board.game.playing) {
-      setTimeout(this.fall.bind(this), this.speed);
+  _createClass(Pew, [{
+    key: "posFilled",
+    value: function posFilled(row, col) {
+      return this.board.grid[row][col] !== 0;
     }
-  }
-
-  fall() {
-    if (this.row1 < 14 && this.row2 < 14) {
-      if (this.horizontal) {
-        //this.fallHorizontal(this.board.grid) {}
-        if (this.posFilled(this.row1 + 1, this.col1)) {
-          this.singleFall(this.board.grid, 2, this.col2);
-        } else if (this.posFilled(this.row2 + 1, this.col2)) {
-          this.singleFall(this.board.grid, 1, this.col1);
+  }, {
+    key: "posEmpty",
+    value: function posEmpty(row, col) {
+      return this.board.grid[row][col] === 0;
+    }
+  }, {
+    key: "callFall",
+    value: function callFall() {
+      if (!this.board.gameOver && this.board.game.playing) {
+        setTimeout(this.fall.bind(this), this.speed);
+      }
+    }
+  }, {
+    key: "fall",
+    value: function fall() {
+      if (this.row1 < 14 && this.row2 < 14) {
+        if (this.horizontal) {
+          //this.fallHorizontal(this.board.grid) {}
+          if (this.posFilled(this.row1 + 1, this.col1)) {
+            this.singleFall(this.board.grid, 2, this.col2);
+          } else if (this.posFilled(this.row2 + 1, this.col2)) {
+            this.singleFall(this.board.grid, 1, this.col1);
+          } else {
+            this.moveDown(this.board.grid);
+            this.callFall();
+          }
         } else {
-          this.moveDown(this.board.grid);
-          this.callFall();
+          if (this.posEmpty(this.row2 + 1, this.col2)) {
+            //this.fallVertical(this.board.grid) {}
+            this.moveDownVertical(this.board.grid);
+            this.callFall();
+          } else {
+            this.stopped = true;
+          }
         }
       } else {
-        if (this.posEmpty(this.row2 + 1, this.col2)) {
-          //this.fallVertical(this.board.grid) {}
-          this.moveDownVertical(this.board.grid);
-          this.callFall();
-        } else {
-          this.stopped = true;
-        }
+        this.stopped = true;
+        this.noSwitch = true;
       }
-    } else {
-      this.stopped = true;
+      if (this.stopped) {
+        this.dropPew();
+      }
+    }
+  }, {
+    key: "singleFall",
+    value: function singleFall(grid, rowNum, col) {
       this.noSwitch = true;
+      var row = this["row" + rowNum];
+      if (this.posEmpty(row + 1, col) && row < 14) {
+        grid[row + 1][col] = grid[row][col];
+        grid[row][col] = 0;
+        this["row" + rowNum]++;
+        this.board.draw();
+        this.callFall();
+      } else {
+        this.stopped = true;
+      }
     }
-    if (this.stopped) {
-      this.dropPew();
+  }, {
+    key: "dropPew",
+    value: function dropPew() {
+      if (this.stopped) {
+        this.board.dropPew();
+      }
     }
-  }
-
-  singleFall(grid, rowNum, col) {
-    this.noSwitch = true;
-    let row = this[`row${rowNum}`];
-    if (this.posEmpty(row + 1, col) && row < 14) {
-      grid[row + 1][col] = grid[row][col];
-      grid[row][col] = 0;
-      this[`row${rowNum}`]++;
-      this.board.draw();
-      this.callFall();
-    } else {
-      this.stopped = true;
-    }
-  }
-
-  dropPew() {
-    if (this.stopped) {
-      this.board.dropPew();
-    }
-  }
-
-  moveRight(grid) {
-    if (this.col2 < 9 && this.col1 < 9
-      && this.posEmpty(this.row2, this.col2 + 1)
-      && !this.stopped && !this.noSwitch) {
+  }, {
+    key: "moveRight",
+    value: function moveRight(grid) {
+      if (this.col2 < 9 && this.col1 < 9 && this.posEmpty(this.row2, this.col2 + 1) && !this.stopped && !this.noSwitch) {
         this.horizontal ? this.moveRightHorizontal(grid) : this.moveRightVertical(grid);
 
         grid[this.row1][this.col1] = 0;
         this.col1++;
         this.col2++;
         this.board.draw();
+      }
     }
-  }
-  moveRightHorizontal(grid) {
-    grid[this.row2][this.col2 + 1] = grid[this.row2][this.col2];
-    grid[this.row2][this.col2] = grid[this.row1][this.col1];
-  }
-  moveRightVertical(grid) {
-    grid[this.row1][this.col1 + 1] = grid[this.row1][this.col1];
-    grid[this.row2][this.col2 + 1] = grid[this.row2][this.col2];
-    grid[this.row2][this.col2] = 0;
-  }
-  moveLeft(grid) {
-    if (this.col2 > 0 && this.col1 > 0
-      && this.posEmpty(this.row2, this.col1 - 1)
-      && !this.stopped && !this.noSwitch) {
+  }, {
+    key: "moveRightHorizontal",
+    value: function moveRightHorizontal(grid) {
+      grid[this.row2][this.col2 + 1] = grid[this.row2][this.col2];
+      grid[this.row2][this.col2] = grid[this.row1][this.col1];
+    }
+  }, {
+    key: "moveRightVertical",
+    value: function moveRightVertical(grid) {
+      grid[this.row1][this.col1 + 1] = grid[this.row1][this.col1];
+      grid[this.row2][this.col2 + 1] = grid[this.row2][this.col2];
+      grid[this.row2][this.col2] = 0;
+    }
+  }, {
+    key: "moveLeft",
+    value: function moveLeft(grid) {
+      if (this.col2 > 0 && this.col1 > 0 && this.posEmpty(this.row2, this.col1 - 1) && !this.stopped && !this.noSwitch) {
         this.horizontal ? this.moveLeftHorizontal(grid) : this.moveLeftVertical(grid);
 
         this.col1--;
         this.col2--;
         this.board.draw();
+      }
     }
-  }
-  moveLeftHorizontal(grid) {
-    grid[this.row1][this.col1 - 1] = grid[this.row1][this.col1];
-    grid[this.row2][this.col2 -1] = grid[this.row2][this.col2];
-    grid[this.row2][this.col2] = 0;
-  }
-  moveLeftVertical(grid) {
-    this.moveLeftHorizontal(grid);
-    grid[this.row1][this.col1] = 0;
-  }
-
-  switchColors(grid) {
-    if (!this.noSwitch) {
-      let hold = grid[this.row1][this.col1];
-      grid[this.row1][this.col1] = grid[this.row2][this.col2];
-      grid[this.row2][this.col2] = hold;
-      this.board.draw();
-    }
-  }
-  moveDown(grid) {
-    if (this.horizontal) {
-      this.moveDownHorizontal(grid);
-    } else {
-      this.moveDownVertical(grid);
-    }
-  }
-  moveDownHorizontal(grid) {
-    if (this.posEmpty(this.row1 + 1, this.col1)
-        && this.posEmpty(this.row2 + 1, this.col2)
-        && this.row1 < 14 && this.row2 < 14) {
-      grid[this.row1 + 1][this.col1] = grid[this.row1][this.col1];
-      grid[this.row2 + 1][this.col2] = grid[this.row2][this.col2];
-      grid[this.row1][this.col1] = 0;
+  }, {
+    key: "moveLeftHorizontal",
+    value: function moveLeftHorizontal(grid) {
+      grid[this.row1][this.col1 - 1] = grid[this.row1][this.col1];
+      grid[this.row2][this.col2 - 1] = grid[this.row2][this.col2];
       grid[this.row2][this.col2] = 0;
-      this.row1++;
-      this.row2++;
-      this.board.draw();
     }
-  }
-  moveDownVertical(grid) {
-    if (this.posEmpty(this.row2 + 1, this.col2)) {
-      grid[this.row2 + 1][this.col2] = grid[this.row2][this.col2];
-      grid[this.row1 + 1][this.col1] = grid[this.row1][this.col1];
+  }, {
+    key: "moveLeftVertical",
+    value: function moveLeftVertical(grid) {
+      this.moveLeftHorizontal(grid);
       grid[this.row1][this.col1] = 0;
-      this.row1++;
-      this.row2++;
-      this.board.draw();
     }
-  }
-
-  rotate(grid) {
-    const dx = this.horizontal ? 1 : (-1);
-    const dy = this.horizontal ? (-1) : 1;
-    if (this.posEmpty(this.row2 + dx, this.col2 + dy) && !this.noSwitch) {
-      grid[this.row2 + dx][this.col2 +dy] = grid[this.row2][this.col2];
-      grid[this.row2][this.col2] = 0;
-      this.row2 = this.row2 + dx;
-      this.col2 = this.col2 + dy;
-      this.board.draw();
-      this.horizontal = !this.horizontal;
-    } else {
-      this.noSwitch = true;
+  }, {
+    key: "switchColors",
+    value: function switchColors(grid) {
+      if (!this.noSwitch) {
+        var hold = grid[this.row1][this.col1];
+        grid[this.row1][this.col1] = grid[this.row2][this.col2];
+        grid[this.row2][this.col2] = hold;
+        this.board.draw();
+      }
     }
-  }
-}
+  }, {
+    key: "moveDown",
+    value: function moveDown(grid) {
+      if (this.horizontal) {
+        this.moveDownHorizontal(grid);
+      } else {
+        this.moveDownVertical(grid);
+      }
+    }
+  }, {
+    key: "moveDownHorizontal",
+    value: function moveDownHorizontal(grid) {
+      if (this.posEmpty(this.row1 + 1, this.col1) && this.posEmpty(this.row2 + 1, this.col2) && this.row1 < 14 && this.row2 < 14) {
+        grid[this.row1 + 1][this.col1] = grid[this.row1][this.col1];
+        grid[this.row2 + 1][this.col2] = grid[this.row2][this.col2];
+        grid[this.row1][this.col1] = 0;
+        grid[this.row2][this.col2] = 0;
+        this.row1++;
+        this.row2++;
+        this.board.draw();
+      }
+    }
+  }, {
+    key: "moveDownVertical",
+    value: function moveDownVertical(grid) {
+      if (this.posEmpty(this.row2 + 1, this.col2)) {
+        grid[this.row2 + 1][this.col2] = grid[this.row2][this.col2];
+        grid[this.row1 + 1][this.col1] = grid[this.row1][this.col1];
+        grid[this.row1][this.col1] = 0;
+        this.row1++;
+        this.row2++;
+        this.board.draw();
+      }
+    }
+  }, {
+    key: "rotate",
+    value: function rotate(grid) {
+      var dx = this.horizontal ? 1 : -1;
+      var dy = this.horizontal ? -1 : 1;
+      if (this.posEmpty(this.row2 + dx, this.col2 + dy) && !this.noSwitch) {
+        grid[this.row2 + dx][this.col2 + dy] = grid[this.row2][this.col2];
+        grid[this.row2][this.col2] = 0;
+        this.row2 = this.row2 + dx;
+        this.col2 = this.col2 + dy;
+        this.board.draw();
+        this.horizontal = !this.horizontal;
+      } else {
+        this.noSwitch = true;
+      }
+    }
+  }]);
 
-/* harmony default export */ __webpack_exports__["a"] = (Pew);
+  return Pew;
+}();
 
+exports.default = Pew;
 
 /***/ })
 /******/ ]);
