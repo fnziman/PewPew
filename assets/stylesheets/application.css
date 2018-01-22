@@ -1,7 +1,5 @@
 body {
-  display: flex;
-  flex-direction: column;
-  max-height: 100vh;
+  height: 100vh;
   background: -webkit-linear-gradient(left top, magenta, cyan);
 }
 header {
@@ -67,7 +65,7 @@ h3 {
   z-index: 1000;
   position: relative;
   left: 110px;
-  top: -290px;
+  top: -310px;
   border-radius: 50%;
   padding: 35px 0px;
   color: cyan;
