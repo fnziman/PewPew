@@ -1,5 +1,6 @@
 body {
   background: -webkit-linear-gradient(left top, magenta, cyan);
+  height: 100vh;
 }
 header {
   font-family: 'Varela Round', sans-serif;
